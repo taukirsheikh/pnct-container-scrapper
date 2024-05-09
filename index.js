@@ -17,10 +17,11 @@ const fs = require('fs');
     await page.type('textarea', `${id1}, ${id2},${id3}`)
     await page.click('#btnTosInquiry')
 
-    
+    await page.waitForNavigation()
     // Wait for the table to appear
     // await page.waitForSelector('table.table');
     await page.waitForSelector('tbody tr.ng-scope')
+    
 
     const containerData = await page.evaluate(() => {
         const headers = Array.from(document.querySelectorAll('th')).map(head => head.textContent);
@@ -30,7 +31,15 @@ const fs = require('fs');
             const rData = Array.from(row.querySelectorAll('td'));
             const rowDataObj = {};
             rData.forEach((tdData, index) => {
-                rowDataObj[headers[index]] = tdData.textContent;
+                if (tdData.textContent=="")
+                    {
+
+                        rowDataObj[headers[index]] = "N/A";
+                    }
+                    else {
+                        rowDataObj[headers[index]] = tdData.textContent;
+
+                    }
             });
             return rowDataObj;
         });
