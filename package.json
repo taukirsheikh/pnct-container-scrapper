@@ -1,0 +1,17 @@
+{
+  "name": "scraping-ship-data",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "dev":"nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "nodemon": "^3.1.0",
+    "puppeteer": "^22.8.0"
+  }
+}
